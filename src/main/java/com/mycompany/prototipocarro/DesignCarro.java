@@ -1,4 +1,3 @@
-
 package com.mycompany.prototipocarro;
 
 import java.awt.Color;
@@ -20,7 +19,7 @@ public class DesignCarro extends javax.swing.JFrame {
 
     private ProtCarro protcarro;
     private boolean botaoLiga;
-            
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -168,9 +167,16 @@ public class DesignCarro extends javax.swing.JFrame {
     }//GEN-LAST:event_esquerdaActionPerformed
 
     private void onoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onoffActionPerformed
-        protcarro.ligar();
-        motor.setBackground(Color.GREEN);
-        protcarro.desligar();
+       botaoLiga = true;
+        if (botaoLiga = true) {  
+            protcarro.ligar();
+            motor.setBackground(Color.GREEN);
+            botaoLiga = false;
+        } else{
+            motor.setBackground(Color.red);
+        }
+        
+
     }//GEN-LAST:event_onoffActionPerformed
 
     private void freioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freioActionPerformed
