@@ -16,6 +16,24 @@ private int direcao;//angulo + 10
         this.kilometragem = 0;
         this.direcao = 0;
     }
+
+    public int getVelocidade() {
+        return velocidade;
+    }
+
+    public boolean isLigado() {
+        return ligado;
+    }
+
+    public int getKilometragem() {
+        return kilometragem;
+    }
+
+    public int getDirecao() {
+        return direcao;
+    }
+    
+    
     
     public void ligar(){
         ligado = true;
@@ -23,27 +41,29 @@ private int direcao;//angulo + 10
     
     public void desligar(){
         ligado = false;
+        velocidade = 0;
+        direcao = 0;
     }
     
     public void acelera(){
-        if (ligado = true && velocidade < 45){
+        if (ligado == true && velocidade < 45){
             velocidade += 1; 
         }
     }
         
     public void freia(){
-        if (ligado = true && velocidade < 0){
+        if (ligado == true && velocidade > 0){
            velocidade -= 1;
         }
     } 
    
     public void esquerda(){
-        if (ligado = true && direcao < 0 && direcao < -90 ){
+        if (ligado == true && direcao < 0 && direcao > -90 ){
             direcao +=10;
         }
     }    
     public void direita(){
-        if (ligado = true && direcao > 0 && direcao < 90){
+        if (ligado == true && direcao > 0 && direcao < 90){
             direcao -= 10;
         }
     }    
@@ -51,6 +71,7 @@ private int direcao;//angulo + 10
     public void atualizar(){
         //deslocamento = v*t;
         kilometragem = velocidade * 1;
+        
     }    
     
   

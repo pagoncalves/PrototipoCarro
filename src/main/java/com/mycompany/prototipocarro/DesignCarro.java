@@ -18,7 +18,6 @@ public class DesignCarro extends javax.swing.JFrame {
     }
 
     private ProtCarro protcarro;
-    private boolean botaoLiga;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,6 +32,7 @@ public class DesignCarro extends javax.swing.JFrame {
         odometro = new javax.swing.JLabel();
         onoff = new javax.swing.JToggleButton();
         motor = new javax.swing.JPanel();
+        direcao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +118,8 @@ public class DesignCarro extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        direcao.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,11 +143,17 @@ public class DesignCarro extends javax.swing.JFrame {
                         .addGap(50, 50, 50)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(direcao, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(178, Short.MAX_VALUE)
+                .addContainerGap(70, Short.MAX_VALUE)
+                .addComponent(direcao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,32 +171,48 @@ public class DesignCarro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void esquerdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esquerdaActionPerformed
-        // TODO add your handling code here:
+        protcarro.esquerda();
+        atualizarCarro();
     }//GEN-LAST:event_esquerdaActionPerformed
 
-    private void onoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onoffActionPerformed
-       botaoLiga = true;
-        if (botaoLiga = true) {  
-            protcarro.ligar();
+    private void atualizarCarro() {
+        boolean ligado = protcarro.isLigado();
+        int velocidade = protcarro.getVelocidade();
+        int kilometragem = protcarro.getKilometragem();
+        int direcao = protcarro.getDirecao();
+        if (ligado) {
             motor.setBackground(Color.GREEN);
-            botaoLiga = false;
-        } else{
-            motor.setBackground(Color.red);
+        } else {
+            motor.setBackground(new Color(102, 0, 0));
         }
-        
+        velocimetro.setText("" + velocidade);
+    }
 
+    private void onoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onoffActionPerformed
+        if (onoff.isSelected()) {
+            protcarro.ligar();
+
+        } else {
+            protcarro.desligar();
+        }
+
+        atualizarCarro();
     }//GEN-LAST:event_onoffActionPerformed
 
     private void freioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freioActionPerformed
-        // TODO add your handling code here:
+        protcarro.freia();
+        atualizarCarro();
     }//GEN-LAST:event_freioActionPerformed
 
     private void aceleradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceleradorActionPerformed
-        // TODO add your handling code here:
+        protcarro.acelera();
+        atualizarCarro();
+
     }//GEN-LAST:event_aceleradorActionPerformed
 
     private void direitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direitaActionPerformed
-        // TODO add your handling code here:
+        protcarro.direita();
+        atualizarCarro();
     }//GEN-LAST:event_direitaActionPerformed
 
     /**
@@ -228,6 +252,7 @@ public class DesignCarro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acelerador;
+    private javax.swing.JLabel direcao;
     private javax.swing.JButton direita;
     private javax.swing.JButton esquerda;
     private javax.swing.JButton freio;
