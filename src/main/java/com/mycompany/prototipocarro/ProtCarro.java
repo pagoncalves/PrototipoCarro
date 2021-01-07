@@ -58,13 +58,13 @@ private int direcao;//angulo + 10
     } 
    
     public void esquerda(){
-        if (ligado == true && direcao < 0 && direcao > -90 ){
-            direcao +=10;
+        if (ligado == true && direcao > -90 || direcao <= 0 ){
+            direcao -=10;
         }
     }    
     public void direita(){
-        if (ligado == true && direcao > 0 && direcao < 90){
-            direcao -= 10;
+        if (ligado == true && direcao >= 0 || direcao < 90){
+            direcao += 10;
         }
     }    
     
