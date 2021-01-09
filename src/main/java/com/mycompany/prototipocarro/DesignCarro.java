@@ -1,6 +1,7 @@
 package com.mycompany.prototipocarro;
 
 import java.awt.Color;
+import javax.swing.Timer;
 
 /**
  *
@@ -11,18 +12,25 @@ public class DesignCarro extends javax.swing.JFrame {
     /**
      * Creates new form DesignCarro
      */
-    public DesignCarro() {
+    public DesignCarro(ProtCarro c1) {
         initComponents();
         //criar atributo protcarro
-        protcarro = new ProtCarro();
+        protcarro = c1;
+        Timer timer = new Timer(100, (ae) -> {
+            atualizarCarro();
+        });
+        timer.start();
+
     }
 
     private ProtCarro protcarro;
+    private Timer timer;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         velocimetro = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         acelerador = new javax.swing.JButton();
@@ -33,8 +41,13 @@ public class DesignCarro extends javax.swing.JFrame {
         onoff = new javax.swing.JToggleButton();
         motor = new javax.swing.JPanel();
         direcao = new javax.swing.JSlider();
+        bateria = new javax.swing.JLabel();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
 
         velocimetro.setText("Velocimetro");
 
@@ -118,59 +131,72 @@ public class DesignCarro extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        direcao.setBackground(new java.awt.Color(51, 51, 51));
+        direcao.setForeground(new java.awt.Color(0, 0, 0));
         direcao.setMaximum(90);
         direcao.setMinimum(-90);
         direcao.setValue(0);
+        direcao.setEnabled(false);
+        direcao.setFocusable(false);
+        direcao.setOpaque(true);
         direcao.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 direcaoStateChanged(evt);
             }
         });
 
+        bateria.setText("Bateria");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(velocimetro, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bateria))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
-                        .addComponent(odometro)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(onoff)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(motor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(odometro)
+                            .addComponent(velocimetro, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(onoff)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(motor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(84, 84, 84)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(direcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(direcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addComponent(bateria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(direcao, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(velocimetro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(onoff))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(velocimetro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(onoff, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(odometro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(motor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(motor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(22, 22, 22))
         );
 
@@ -179,24 +205,24 @@ public class DesignCarro extends javax.swing.JFrame {
 
     private void esquerdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esquerdaActionPerformed
         protcarro.esquerda();
-        int pos = protcarro.getDirecao();
-        direcao.setValue(pos);
-        atualizarCarro();
     }//GEN-LAST:event_esquerdaActionPerformed
 
     private void atualizarCarro() {
+        protcarro.atualizar();
         boolean ligado = protcarro.isLigado();
         int velocidade = protcarro.getVelocidade();
-        int kilometragem = protcarro.getKilometragem();
-        //int direcaoo = protcarro.getDirecao();
+        double kilometragem = protcarro.getKilometragem()/100.0;
+        int pos = protcarro.getDirecao();
+        direcao.setValue(pos);
+        double bat = protcarro.getBateria();
         if (ligado) {
             motor.setBackground(Color.GREEN);
         } else {
             motor.setBackground(new Color(102, 0, 0));
-            direcao.setValue(0);
-
         }
         velocimetro.setText("" + velocidade);
+        odometro.setText("" + kilometragem);
+        bateria.setText(String.format("%.0f", bat));
     }
 
     private void onoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onoffActionPerformed
@@ -206,26 +232,18 @@ public class DesignCarro extends javax.swing.JFrame {
         } else {
             protcarro.desligar();
         }
-
-        atualizarCarro();
     }//GEN-LAST:event_onoffActionPerformed
 
     private void freioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freioActionPerformed
         protcarro.freia();
-        atualizarCarro();
     }//GEN-LAST:event_freioActionPerformed
 
     private void aceleradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceleradorActionPerformed
         protcarro.acelera();
-        atualizarCarro();
-
     }//GEN-LAST:event_aceleradorActionPerformed
 
     private void direitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direitaActionPerformed
         protcarro.direita();
-        int pos = protcarro.getDirecao();
-        direcao.setValue(pos);
-        atualizarCarro();
     }//GEN-LAST:event_direitaActionPerformed
 
     private void direcaoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_direcaoStateChanged
@@ -262,17 +280,22 @@ public class DesignCarro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DesignCarro().setVisible(true);
+                ProtCarro c1 = new ProtCarro(); 
+                new DesignCarro(c1).setVisible(true);
+                    new DesignCarro(c1).setVisible(true);
+                    
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acelerador;
+    private javax.swing.JLabel bateria;
     private javax.swing.JSlider direcao;
     private javax.swing.JButton direita;
     private javax.swing.JButton esquerda;
     private javax.swing.JButton freio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel motor;
     private javax.swing.JLabel odometro;

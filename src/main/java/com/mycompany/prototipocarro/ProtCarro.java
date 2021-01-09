@@ -1,12 +1,13 @@
-
 package com.mycompany.prototipocarro;
 
 //atributos
 public class ProtCarro {
-private int velocidade;//em metros
-private boolean ligado;
-private int kilometragem;
-private int direcao;//angulo + 10
+
+    private int velocidade;//em metros
+    private boolean ligado;
+    private int kilometragem;
+    private int direcao;//angulo + 10
+    private double bateria;
 
 //metodos: liga/desliga, direita(+10), esquerda(-10), acelera(limite 45), freia(não pode ficar negativo, atualizar(odometro - formula deslocamento), 
     //construtor
@@ -15,6 +16,7 @@ private int direcao;//angulo + 10
         this.ligado = false;
         this.kilometragem = 0;
         this.direcao = 0;
+        this.bateria = 100;
     }
 
     public int getVelocidade() {
@@ -32,48 +34,53 @@ private int direcao;//angulo + 10
     public int getDirecao() {
         return direcao;
     }
-    
-    
-    
-    public void ligar(){
+
+    public double getBateria() {
+        return bateria;
+    }
+
+    public void ligar() {
         ligado = true;
-     }
-    
-    public void desligar(){
+    }
+
+    public void desligar() {
         ligado = false;
         velocidade = 0;
         direcao = 0;
+        bateria = 100;
     }
-    
-    public void acelera(){
-        if (ligado == true && velocidade < 45){
-            velocidade += 1; 
+
+    public void acelera() {
+        if (ligado == true && velocidade < 45) {
+            velocidade += 1;
         }
     }
-        
-    public void freia(){
-        if (ligado == true && velocidade > 0){
-           velocidade -= 1;
+
+    public void freia() {
+        if (ligado == true && velocidade > 0) {
+            velocidade -= 1;
         }
-    } 
-   
-    public void esquerda(){
-        if (ligado == true && direcao > -90 || direcao <= 0 ){
-            direcao -=10;
+    }
+
+    public void esquerda() {
+        if (ligado == true && direcao > -90) {
+            direcao -= 10;
         }
-    }    
-    public void direita(){
-        if (ligado == true && direcao >= 0 || direcao < 90){
+    }
+
+    public void direita() {
+        if (ligado == true && direcao < 90) {
             direcao += 10;
         }
-    }    
-    
-    public void atualizar(){
+    }
+
+    public void atualizar() {
         //deslocamento = v*t;
-        kilometragem = velocidade * 1;
-        
-    }    
-    
-  
-    
+        kilometragem += velocidade * 1;
+        bateria -= velocidade / 10.0;
+        if (bateria <= 0.0) {
+            desligar();
+        }
+    }
+
 }
